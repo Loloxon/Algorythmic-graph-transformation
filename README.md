@@ -1,4 +1,5 @@
-# TIAG Projekt - podejście algorytmiczne
+# Program do stosowania transformacji grafowych bazując na podejściu algorytmicznym
+Realizowany w ramach przedmiotu Transformacje i Algorytmy Grafowe na kierunku Informatyka na AGH
 
 Program umożliwa zapisywanie grafów oraz produkcji w postaci podejścia algorytmicznego, a także ich stosowanie. 
 Jest możliwe podanie kilku grafów, a następnie wybór do którego z nich dana produkcja ma zostać zastosowana.
