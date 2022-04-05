@@ -16,6 +16,9 @@ Do uruchomienia programu potrzebny jest [interpreter Pythona](https://www.python
 ```
 [user@$host ~]$ pip3 install graphviz
 [user@$host ~]$ pip3 install tk
+
+<img src="../images/starting_window.png" style="zoom:100%;" />
+
 ```
 Program można uruchomić przez komendę
 ```
