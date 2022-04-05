@@ -16,15 +16,14 @@ Do uruchomienia programu potrzebny jest [interpreter Pythona](https://www.python
 ```
 [user@$host ~]$ pip3 install graphviz
 [user@$host ~]$ pip3 install tk
-
-<img src="../images/starting_window.png" style="zoom:100%;" />
-
 ```
 Program można uruchomić przez komendę
 ```
 [user@$host ~]$ python3 filepath
 ```
 gdzie _filepath_ to ścieżka do pliku gui.py
+
+<img src="./images/starting_window.png" style="zoom:100%;" />
 
 ## Dodawanie grafu (**Add graph**):
 ```
@@ -38,6 +37,8 @@ Przykład:
 1, 2, ab; 2, 3, bc;
 ```
 
+<img src="./images/add_graph.png" style="zoom:100%;" />
+
 ## Dodawanie produkcji (**Add production**):
 - Lewa strona produkcji: analogicznie jak graf
 - Prawa strona produkcji: analogicznie jak graf
@@ -50,6 +51,8 @@ Przykład (transformacji osadzenia):
 ```
 ab, out, 1; A, B, r, in; X, B, t, out;
 ```
+
+<img src="./images/add_production.png" style="zoom:100%;" />
 
 ## Stosowanie produkcji (**Apply**):
 - pole po lewej stronie :
@@ -68,6 +71,12 @@ Przykład:
 ```
 
 *LSP - lewa strona produkcji, PSP - prawa strona produkcji, RG - reszta grafu*
+
+After adding graph no '0' and applying production '0' on vertex '0'
+<img src="./images/first_graph.png" style="zoom:100%;"/>
+
+After applying production '1' twice on vertex '1'
+<img src="./images/improved_graph.png" style="zoom:100%;" />
 
 ## Autorzy i podział ról
 - Nikodem Korohoda - parsowanie notacji, przechowywanie produkcji, wizualizacja grafu, organizacja projektu
