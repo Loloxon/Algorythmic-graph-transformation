@@ -125,25 +125,6 @@ class Main:
                             graph.add_edge(Edge(other_vertex_id, right_vertex_id, added_edge[2]))
 
 
-# 0 1
-# 0 2
-# 0 3
-# 1 4
-# 2 5
-# 2 6
-# 2 7
-# 3 8
-# 1 9
-# 1 10
-# 3 11
-# 1 12
-# 3 13
-# 1 14
-# 3 15
-# 1 16
-# 3 17
-# 3 18
-
 # Embedded transform input format:
 # """edge_label, direction, index_left; ver_right_label, ver_g_label, edge_label, direction;
 # edge_label, direction, index_left; ver_right_label, ver_g_label, edge_label, direction;"""
@@ -153,12 +134,6 @@ ai, out, 1; A, I, ai, out; M, I, -c, in;"""
 A3 = """am, out, 1; A, M, am, out; E, M, -b, in;"""
 A4 = """ae, out, 1; A, E, ae, out; I, E, -l, in;
 am, out, 1; A, M, am, out; I, M, c, in;"""
-
-# S = A4.replace('\n', ' ')
-# S = S.split(';')
-# for i in range(len(S)):
-#     S[i] = S[i].split(', ')
-# print(S)
 
 g_l1 = """1, A;"""
 g_r1 = """1, A; 2, N;
@@ -189,9 +164,6 @@ def default(m=None):
     for i in range(len(graphs)):
         for j in range(2):
             m.add_graph(graphs[i][j * 2], graphs[i][j * 2 + 1])
-
-    # for i in range(len(M.productions)):
-    #     M.show_production(i)
     return m
 
 

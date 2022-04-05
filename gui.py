@@ -1,9 +1,7 @@
 from collections import namedtuple
-import random
 import io
 import tkinter as tk
 import tkinter.ttk as ttk
-from unicodedata import name
 
 from PIL import ImageTk, Image
 
@@ -19,13 +17,15 @@ FG_COLOR = "#CCCCCC"
 PROD_BG_COLOR = "#777777"
 FONT = "Courier"
 
+
 #########################################################
 # code for zooming and scrolling in on graph
 # stolen from https://stackoverflow.com/questions/41656176/tkinter-canvas-zoom-move-pan
 
 class AutoScrollbar(ttk.Scrollbar):
-    ''' A scrollbar that hides itself if it's not needed.
-        Works only if you use the grid geometry manager '''
+    """ A scrollbar that hides itself if it's not needed.
+        Works only if you use the grid geometry manager """
+
     def set(self, lo, hi):
         if float(lo) <= 0.0 and float(hi) >= 1.0:
             self.grid_remove()
@@ -39,10 +39,12 @@ class AutoScrollbar(ttk.Scrollbar):
     def place(self, **kw):
         raise tk.TclError('Cannot use place with this widget')
 
+
 class Zoom_Advanced(ttk.Frame):
-    ''' Advanced zoom of the image '''
+    """ Advanced zoom of the image """
+
     def __init__(self, mainframe, image_data):
-        ''' Initialize the main Frame '''
+        """ Initialize the main Frame """
         ttk.Frame.__init__(self, master=mainframe)
         # Vertical and horizontal scrollbars for canvas
         vbar = AutoScrollbar(self.master, orient='vertical')
@@ -62,10 +64,10 @@ class Zoom_Advanced(ttk.Frame):
         # Bind events to the Canvas
         self.canvas.bind('<Configure>', self.show_image)  # canvas is resized
         self.canvas.bind('<ButtonPress-1>', self.move_from)
-        self.canvas.bind('<B1-Motion>',     self.move_to)
+        self.canvas.bind('<B1-Motion>', self.move_to)
         self.canvas.bind('<MouseWheel>', self.wheel)  # with Windows and MacOS, but not Linux
-        self.canvas.bind('<Button-5>',   self.wheel)  # only with Linux, wheel scroll down
-        self.canvas.bind('<Button-4>',   self.wheel)  # only with Linux, wheel scroll up
+        self.canvas.bind('<Button-5>', self.wheel)  # only with Linux, wheel scroll down
+        self.canvas.bind('<Button-4>', self.wheel)  # only with Linux, wheel scroll up
         self.image = Image.open(io.BytesIO(image_data))  # open image
         self.width, self.height = self.image.size
         self.imscale = 1.0  # scale for the canvaas image
@@ -74,54 +76,57 @@ class Zoom_Advanced(ttk.Frame):
         self.container = self.canvas.create_rectangle(0, 0, self.width, self.height, width=0)
         # centering the image inside of canvas
         Center_coords = namedtuple("center_coords", "x y")
-        center = Center_coords(int((0.5*mainframe.winfo_width())-(0.5*self.width)), int((0.5*mainframe.winfo_height())-(0.5*self.height)))
+        center = Center_coords(int((0.5 * mainframe.winfo_width()) - (0.5 * self.width)),
+                               int((0.5 * mainframe.winfo_height()) - (0.5 * self.height)))
         self.move_to(center)
 
         self.show_image()
 
     def scroll_y(self, *args, **kwargs):
-        ''' Scroll canvas vertically and redraw the image '''
+        """ Scroll canvas vertically and redraw the image """
         self.canvas.yview(*args, **kwargs)  # scroll vertically
         self.show_image()  # redraw the image
 
     def scroll_x(self, *args, **kwargs):
-        ''' Scroll canvas horizontally and redraw the image '''
+        """ Scroll canvas horizontally and redraw the image """
         self.canvas.xview(*args, **kwargs)  # scroll horizontally
         self.show_image()  # redraw the image
 
     def move_from(self, event):
-        ''' Remember previous coordinates for scrolling with the mouse '''
+        """ Remember previous coordinates for scrolling with the mouse """
         self.canvas.scan_mark(event.x, event.y)
 
     def move_to(self, event):
-        ''' Drag (move) canvas to the new position '''
+        """ Drag (move) canvas to the new position """
         self.canvas.scan_dragto(event.x, event.y, gain=1)
         self.show_image()  # redraw the image
 
     def wheel(self, event):
-        ''' Zoom with mouse wheel '''
+        """ Zoom with mouse wheel """
         x = self.canvas.canvasx(event.x)
         y = self.canvas.canvasy(event.y)
         bbox = self.canvas.bbox(self.container)  # get image area
-        if bbox[0] < x < bbox[2] and bbox[1] < y < bbox[3]: pass  # Ok! Inside the image
-        else: return  # zoom only inside image area
+        if bbox[0] < x < bbox[2] and bbox[1] < y < bbox[3]:
+            pass  # Ok! Inside the image
+        else:
+            return  # zoom only inside image area
         scale = 1.0
         # Respond to Linux (event.num) or Windows (event.delta) wheel event
         if event.num == 5 or event.delta == -120:  # scroll down
             i = min(self.width, self.height)
             if int(i * self.imscale) < 30: return  # image is less than 30 pixels
             self.imscale /= self.delta
-            scale        /= self.delta
+            scale /= self.delta
         if event.num == 4 or event.delta == 120:  # scroll up
             i = min(self.canvas.winfo_width(), self.canvas.winfo_height())
             if i < self.imscale: return  # 1 pixel is bigger than the visible area
             self.imscale *= self.delta
-            scale        *= self.delta
+            scale *= self.delta
         self.canvas.scale('all', x, y, scale, scale)  # rescale all canvas objects
         self.show_image()
 
     def show_image(self, event=None):
-        ''' Show image on the Canvas '''
+        """ Show image on the Canvas """
         bbox1 = self.canvas.bbox(self.container)  # get image area
         # Remove 1 pixel shift at the sides of the bbox1
         bbox1 = (bbox1[0] + 1, bbox1[1] + 1, bbox1[2] - 1, bbox1[3] - 1)
@@ -143,7 +148,7 @@ class Zoom_Advanced(ttk.Frame):
         x2 = min(bbox2[2], bbox1[2]) - bbox1[0]
         y2 = min(bbox2[3], bbox1[3]) - bbox1[1]
         if int(x2 - x1) > 0 and int(y2 - y1) > 0:  # show image if it in the visible area
-            x = min(int(x2 / self.imscale), self.width)   # sometimes it is larger on 1 pixel...
+            x = min(int(x2 / self.imscale), self.width)  # sometimes it is larger on 1 pixel...
             y = min(int(y2 / self.imscale), self.height)  # ...and sometimes not
             image = self.image.crop((int(x1 / self.imscale), int(y1 / self.imscale), x, y))
             imagetk = ImageTk.PhotoImage(image.resize((int(x2 - x1), int(y2 - y1))))
@@ -151,6 +156,7 @@ class Zoom_Advanced(ttk.Frame):
                                                anchor='nw', image=imagetk)
             self.canvas.lower(imageid)  # set image into background
             self.canvas.imagetk = imagetk  # keep an extra reference to prevent garbage-collection
+
 
 ########################################################
 

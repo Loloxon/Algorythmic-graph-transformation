@@ -53,6 +53,6 @@ class Production:
             idx += 1
         if len(v) == 0:
             return []
-        return [[(operation[0][0], operation[0][1], int(operation[0][2]))] + \
+        return [[(operation[0][0], operation[0][1], int(operation[0][2]))] +
                 [(added_edge_desc[0], added_edge_desc[1], added_edge_desc[2], added_edge_desc[3])
                  for added_edge_desc in operation[1:]] for operation in v]
