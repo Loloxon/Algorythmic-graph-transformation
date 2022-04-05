@@ -182,7 +182,7 @@ def prod_input_window(backend, prod_frame):
     prod_label = tk.Label(frame, text="Transformation", bg=BG_COLOR, fg=FG_COLOR, font=FONT)
     prod_label.grid(row=4, column=0, pady=5)
     prod_text_box = tk.Text(frame, width=80, height=10, bg=FG_COLOR)
-    prod_text_box.insert(tk.INSERT, "ab, out, 1; A, B, r, in; X, B, t, out;")
+    prod_text_box.insert(tk.INSERT, "s, out, 1; A, N, s, out; M, N, -a, in;\nai, out, 1; A, I, ai, out; M, I, -c, in;")
     prod_text_box.grid(row=5, column=0, padx=10, pady=10)
 
     def add_prod(prod_frame):

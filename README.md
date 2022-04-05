@@ -49,7 +49,8 @@ krawędź_do_usunięcia, kierunek_od_LSP, index_z_LSP; etykieta_wierzchołka_z_P
 
 Przykład (transformacji osadzenia):
 ```
-ab, out, 1; A, B, r, in; X, B, t, out;
+s, out, 1; A, N, s, out; M, N, -a, in;
+ai, out, 1; A, I, ai, out; M, I, -c, in;
 ```
 
 <img src="./images/add_production.png" style="zoom:100%;" />
