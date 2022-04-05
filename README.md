@@ -23,7 +23,7 @@ Program można uruchomić przez komendę
 ```
 gdzie _filepath_ to ścieżka do pliku gui.py
 
-<img src="./images/starting_window.png" style="zoom:100%;" />
+![Starting window](https://github.com/Loloxon/Algorythmic-graph-transformation/blob/main/images/starting_window.png)
 
 ## Dodawanie grafu (**Add graph**):
 ```
@@ -37,7 +37,7 @@ Przykład:
 1, 2, ab; 2, 3, bc;
 ```
 
-<img src="./images/add_graph.png" style="zoom:100%;" />
+![Add graph](https://github.com/Loloxon/Algorythmic-graph-transformation/blob/main/images/add_graph.png)
 
 ## Dodawanie produkcji (**Add production**):
 - Lewa strona produkcji: analogicznie jak graf
@@ -53,7 +53,7 @@ s, out, 1; A, N, s, out; M, N, -a, in;
 ai, out, 1; A, I, ai, out; M, I, -c, in;
 ```
 
-<img src="./images/add_production.png" style="zoom:100%;" />
+![Add production](https://github.com/Loloxon/Algorythmic-graph-transformation/blob/main/images/add_production.png)
 
 ## Stosowanie produkcji (**Apply**):
 - pole po lewej stronie :
@@ -74,10 +74,10 @@ Przykład:
 *LSP - lewa strona produkcji, PSP - prawa strona produkcji, RG - reszta grafu*
 
 After adding graph no '0' and applying production '0' on vertex '1'
-<img src="./images/first_graph.png" style="zoom:100%;"/>
+![First graph](https://github.com/Loloxon/Algorythmic-graph-transformation/blob/main/images/first_graph.png)
 
 After applying production '1' twice on vertex '1'
-<img src="./images/improved_graph.png" style="zoom:100%;" />
+![Improved graph](https://github.com/Loloxon/Algorythmic-graph-transformation/blob/main/images/improved_graph.png)
 
 ## Autorzy i podział ról
 - Nikodem Korohoda - parsowanie notacji, przechowywanie produkcji, wizualizacja grafu, organizacja projektu
