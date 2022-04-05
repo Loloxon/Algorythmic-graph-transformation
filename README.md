@@ -73,7 +73,7 @@ Przykład:
 
 *LSP - lewa strona produkcji, PSP - prawa strona produkcji, RG - reszta grafu*
 
-After adding graph no '0' and applying production '0' on vertex '0'
+After adding graph no '0' and applying production '0' on vertex '1'
 <img src="./images/first_graph.png" style="zoom:100%;"/>
 
 After applying production '1' twice on vertex '1'
